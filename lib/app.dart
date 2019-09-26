@@ -46,19 +46,30 @@ class _GSTFormState extends State<app>{
           ),
 
           Center(
-            child: DropdownButton<String>(
-              items: _rates.map((String value){
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              value: _itemSel,
+            child: Padding(
+              padding: EdgeInsets.all(_padding),
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(_padding*4),
+                    child: Text("GST Rates: ", style: textStyle,),
+                  ),
+                  DropdownButton<String>(
+                    items: _rates.map((String value){
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    value: _itemSel,
 
-              onChanged: (String newValueSelected){
-                _onDrop(newValueSelected);
+                    onChanged: (String newValueSelected){
+                      _onDrop(newValueSelected);
 
-              },
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
 
