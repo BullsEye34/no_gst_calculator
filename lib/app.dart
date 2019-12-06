@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class app extends StatefulWidget{
+class app extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -8,119 +8,234 @@ class app extends StatefulWidget{
   }
 }
 
-class _GSTFormState extends State<app>{
-  var _rates = ['5', '12', '18', '28'];
+class _GSTFormState extends State<app> {
+  //var _rates = ['5', '12', '18', '28'];
   final _padding = 20.0;
-  var _itemSel = "5";
+  var _itemSel;
+  var _ra;
   TextEditingController priceCon = TextEditingController();
   var disp = '';
+  List<bool> isSelected = List.generate(4, (_)=>false);
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    //isSelected = [true, false, ];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     TextStyle textStyle = Theme.of(context).textTheme.title;
     return Scaffold(
-      //resizeToAvoidBottomPadding: false,
-      appBar: AppBar(
-        title: Text("No GST Calculator")
-      ),
-    body: Container(
-      child: ListView(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.all(_padding),
-            child: TextField(
-              keyboardType: TextInputType.number,
-              style: textStyle,
-              controller: priceCon,
-              decoration: InputDecoration(
-                labelText: 'MRP',
-                hintText: 'Enter the Final Price ',
-                labelStyle: textStyle,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0)
-                )
-              ),
+        //resizeToAvoidBottomPadding: false,
+        appBar: AppBar(
+          title: Text("No GST Calculator"),
+          centerTitle: true,
+          backgroundColor: Colors.black,
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("Images/eventse.png"),
+              fit: BoxFit.cover,
             ),
           ),
-
-          Center(
-            child: Padding(
-              padding: EdgeInsets.all(_padding),
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(_padding*4),
-                    child: Text("GST Rates: ", style: textStyle,),
+          child: ListView(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(_padding),
+                child: Card(
+                  color: Color(0x90026873),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    style: textStyle,
+                    controller: priceCon,
+                    decoration: InputDecoration(
+                        labelText: 'MRP',
+                        hintText: 'Enter the Final Price ',
+                        labelStyle: textStyle,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.orange,width: 10.0),
+                          borderRadius: BorderRadius.circular(16.0),
+                        )),
                   ),
-                  DropdownButton<String>(
-                    items: _rates.map((String value){
+                ),
+              ),
+              /*Center(
+                child: Padding(
+                  padding: EdgeInsets.all(_padding),
+                  child: DropdownButton<String>(
+                    hint: Text("GST Rates", style: TextStyle(color: Colors.yellow),),
+                    style: TextStyle(color: Colors.yellow, fontSize: 20.0,fontWeight: FontWeight.w900),
+                    items: _rates.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
                       );
                     }).toList(),
                     value: _itemSel,
-
-                    onChanged: (String newValueSelected){
+                    onChanged: (String newValueSelected) {
                       _onDrop(newValueSelected);
-
                     },
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          Padding(
-            padding: EdgeInsets.all(_padding),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
-                    onPressed: (){
-                      setState(() {
-                        this.disp = _calc();
-                      });
-                    },
-                    color: Theme.of(context).accentColor,
-                    textColor: Theme.of(context).primaryColorDark,
-                    child: Text('Calculate', textScaleFactor: 1.5, ),
-                  ),
+                  )
                 ),
-              ],
-            ),
+              ),*/
+              Center(
+                child: Text("GST Rates:", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),),
+              ),
+              ratessss(),
+              Padding(
+                padding: EdgeInsets.all(_padding),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height/15,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100)),
+                          onPressed: () {
+                            setState(() {
+                              this.disp = _calc();
+                            });
+                          },
+                          color: Colors.orange,
+                          textColor: Theme.of(context).primaryColorDark,
+                          child: Text(
+                            'Calculate',
+                            textScaleFactor: 1.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width/1.1,
+                  height: MediaQuery.of(context).size.height/3.5,
+                  child: Card(
+                    color: Color(0x90ffffff),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),),
+                    child: Padding(
+                      padding: EdgeInsets.all(_padding),
+                      child: Text(
+                        disp,
+                        style: TextStyle(
+                          fontSize: 26.0,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  )
+                ),
+              )
+            ],
           ),
-
-          Center(
-            child: Padding(
-              padding: EdgeInsets.all(_padding),
-              child: Text(disp, style: textStyle,),
-
-            ),
-          )
-
-        ],
-      ),
-    )
-    );
+        ));
   }
 
-  void _onDrop (String newValueSelected){
+/*  void _onDrop(String newValueSelected) {
     setState(() {
       this._itemSel = newValueSelected;
     });
-  }
+  }*/
 
-  String _calc(){
+  String _calc() {
     double price = double.parse(priceCon.text);
-    double rates = double.parse(_itemSel);
+/*    double rates = double.parse(_itemSel);
 
-    double gstPrice = (price * (100/(100+rates)));
-    double gst = (gstPrice * ( rates/100 ));
+    double gstPrice = (price * (100 / (100 + rates)));
+    double gst = (gstPrice * (rates / 100));*/
 
-    double total = gst+gstPrice;
-    return 'Actual Price: $gstPrice \n\nGST Amount: $gst \n\nTotal Price: $total';
+    double gstPrice1 = (price * (100 / (100 + _ra)));
+    double gst1 = (gstPrice1 * (_ra / 100));
+    double total1 = gst1 + gstPrice1;
+    print(gstPrice1);
+    print(gst1);
+    print(total1);
+
+/*   double total = gst + gstPrice;
+    return 'Actual Price: $gstPrice \n\nGST Amount: $gst \n\nTotal Price: $total';*/
+    return 'Actual Price: $gstPrice1 \n\nGST Amount: $gst1 \n\nTotal Price: $total1';
   }
+
+  Widget ratessss(){
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            color: Color(0xffffffff),
+            child: ToggleButtons(
+              borderColor: Colors.black,
+              fillColor: Colors.orange,
+              borderWidth:0.5,
+              color: Colors.black,
+              selectedBorderColor: Colors.black,
+              selectedColor: Colors.white,
+              borderRadius: BorderRadius.circular(30),
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    '5%',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    '8%',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    '18%',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    '28%',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
+              onPressed: (int index) {
+                setState(() {
+                  for (int i = 0; i < isSelected.length; i++) {
+                    if (i == index) {
+                      isSelected[i] = true;
+                    } else {
+                      isSelected[i] = false;
+                    }
+                  }
+                  //isSelected[index] = !isSelected[index];
+                });
+                print(index);
+                switch(index){
+                  case 0: _ra=5; break;
+                  case 1: _ra=8;break;
+                  case 2: _ra=18;break;
+                  case 3: _ra=28;break;
+                }
+                print(_ra);
+              },
+              isSelected: isSelected,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
 }
