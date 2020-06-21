@@ -124,6 +124,11 @@ class _GSTFormState extends State<app> {
                   ],
                 ),
               ),
+              FlatButton(
+                onPressed: _showDataPicker,
+                child: Text("Test"),
+                color: Colors.red,
+              ),
               Center(
                 child: Container(
                     width: MediaQuery.of(context).size.width / 1.1,
@@ -263,8 +268,8 @@ class _GSTFormState extends State<app> {
     DataPicker.showDatePicker(
       context,
       showTitleActions: showTitleActions,
-      locale: 'zh',
-      datas: ['dog', 'cat'],
+      locale: 'en',
+      datas: ['5', '8', '18', '28'],
       title: 'select',
       onChanged: (data) {
         print('onChanged date: $data');
