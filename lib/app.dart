@@ -39,11 +39,11 @@ class _GSTFormState extends State<app> {
         ),
         body: Container(
           decoration: BoxDecoration(
-            image: DecorationImage(
+              /* image: DecorationImage(
               image: AssetImage("Images/eventse.png"),
               fit: BoxFit.cover,
-            ),
-          ),
+            ), */
+              ),
           child: ListView(
             children: <Widget>[
               Padding(
