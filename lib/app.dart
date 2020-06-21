@@ -269,13 +269,15 @@ class _GSTFormState extends State<app> {
       context,
       showTitleActions: showTitleActions,
       locale: 'en',
-      datas: ['5', '8', '18', '28'],
-      title: 'select',
+      datas: ['5%', '8%', '18%', '28%'],
+      title: 'GST Rate',
       onChanged: (data) {
-        print('onChanged date: $data');
+        print(
+            'onChanged date: ${data.toString().substring(0, data.toString().length - 1)}');
       },
       onConfirm: (data) {
-        print('onConfirm date: $data');
+        print(
+            'onConfirm date: ${data.toString().substring(0, data.toString().length - 1)}');
       },
     );
   }
