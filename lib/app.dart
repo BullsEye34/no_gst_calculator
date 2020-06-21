@@ -31,6 +31,7 @@ class _GSTFormState extends State<app> {
     // TODO: implement build
     TextStyle textStyle = Theme.of(context).textTheme.title;
     return Scaffold(
+        backgroundColor: Colors.white,
         //resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           title: Text("No GST Calculator"),
