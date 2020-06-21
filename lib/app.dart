@@ -128,7 +128,7 @@ class _GSTFormState extends State<app> {
                     Expanded(
                       child: Container(
                         height: MediaQuery.of(context).size.height / 15,
-                        child: RaisedButton(
+                        child: FlatButton(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                           onPressed: () {
@@ -136,8 +136,8 @@ class _GSTFormState extends State<app> {
                               this.disp = _calc();
                             });
                           },
-                          color: Colors.orange,
-                          textColor: Theme.of(context).primaryColorDark,
+                          color: Colors.blue,
+                          textColor: Colors.white,
                           child: Text(
                             'Calculate',
                             textScaleFactor: 1.5,
