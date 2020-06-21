@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'app.dart';
 
-void main(){
-  runApp(
-    MaterialApp(
+void main() {
+  runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'NO GST CALCULATOR',
-      theme: ThemeData(
+      /* theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.indigo,
-        accentColor: Colors.indigoAccent
-      ),
-      home:app()));
+        accentColor: Colors.indigoAccent,
+      ), */
+      home: app()));
 }
