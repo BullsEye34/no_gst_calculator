@@ -36,6 +36,7 @@ class _GSTFormState extends State<app> {
           title: Text("No GST Calculator"),
           centerTitle: true,
           backgroundColor: Colors.black,
+          elevation: 0,
         ),
         body: Container(
           decoration: BoxDecoration(
