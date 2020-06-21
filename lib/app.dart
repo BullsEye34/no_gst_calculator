@@ -130,7 +130,7 @@ class _GSTFormState extends State<app> {
                         height: MediaQuery.of(context).size.height / 15,
                         child: RaisedButton(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100)),
+                              borderRadius: BorderRadius.circular(15)),
                           onPressed: () {
                             setState(() {
                               this.disp = _calc();
