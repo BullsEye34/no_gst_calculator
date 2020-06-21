@@ -272,14 +272,16 @@ class _GSTFormState extends State<app> {
       title: 'GST Rate',
       onChanged: (data) {
         setState(() {
-          newRate = (data.toString().substring(0, data.toString().length - 1));
+          newRate = int.parse(
+              (data.toString().substring(0, data.toString().length - 1)));
         });
         print(
             'onChanged date: ${data.toString().substring(0, data.toString().length - 1)}');
       },
       onConfirm: (data) {
         setState(() {
-          newRate = (data.toString().substring(0, data.toString().length - 1));
+          newRate = int.parse(
+              (data.toString().substring(0, data.toString().length - 1)));
         });
         print(
             'onConfirm date: ${data.toString().substring(0, data.toString().length - 1)}');
