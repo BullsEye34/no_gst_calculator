@@ -29,7 +29,7 @@ class _GSTFormState extends State<app> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    TextStyle textStyle = Theme.of(context).textTheme.title;
+    //TextStyle textStyle = Theme.of(context).textTheme.title;
     return Scaffold(
         backgroundColor: Colors.white,
         //resizeToAvoidBottomPadding: false,
@@ -50,24 +50,19 @@ class _GSTFormState extends State<app> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.all(_padding),
-                child: Card(
-                  color: Color(0x90026873),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.0)),
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    style: textStyle,
-                    controller: priceCon,
-                    decoration: InputDecoration(
-                        labelText: 'MRP',
-                        hintText: 'Enter the Final Price ',
-                        labelStyle: textStyle,
-                        border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.orange, width: 10.0),
-                          borderRadius: BorderRadius.circular(16.0),
-                        )),
-                  ),
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  //style: textStyle,
+                  controller: priceCon,
+                  decoration: InputDecoration(
+                      labelText: 'MRP',
+                      hintText: 'Enter the Final Price ',
+                      //labelStyle: textStyle,
+                      border: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.orange, width: 10.0),
+                        borderRadius: BorderRadius.circular(15.0),
+                      )),
                 ),
               ),
               /*Center(
