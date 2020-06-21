@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_cupertino_data_picker/flutter_cupertino_data_picker.dart';
 
 class app extends StatefulWidget {
   @override
@@ -254,6 +255,23 @@ class _GSTFormState extends State<app> {
           ),
         ],
       ),
+    );
+  }
+
+  void _showDataPicker() {
+    final bool showTitleActions = true;
+    DataPicker.showDatePicker(
+      context,
+      showTitleActions: showTitleActions,
+      locale: 'zh',
+      datas: ['dog', 'cat'],
+      title: 'select',
+      onChanged: (data) {
+        print('onChanged date: $data');
+      },
+      onConfirm: (data) {
+        print('onConfirm date: $data');
+      },
     );
   }
 }
