@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class app extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _GSTFormState extends State<app> {
   var _ra;
   TextEditingController priceCon = TextEditingController();
   var disp = '';
-  List<bool> isSelected = List.generate(4, (_)=>false);
+  List<bool> isSelected = List.generate(4, (_) => false);
 
   @override
   void initState() {
@@ -48,7 +49,8 @@ class _GSTFormState extends State<app> {
                 padding: EdgeInsets.all(_padding),
                 child: Card(
                   color: Color(0x90026873),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0)),
                   child: TextField(
                     keyboardType: TextInputType.number,
                     style: textStyle,
@@ -58,7 +60,8 @@ class _GSTFormState extends State<app> {
                         hintText: 'Enter the Final Price ',
                         labelStyle: textStyle,
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.orange,width: 10.0),
+                          borderSide:
+                              BorderSide(color: Colors.orange, width: 10.0),
                           borderRadius: BorderRadius.circular(16.0),
                         )),
                   ),
@@ -84,7 +87,13 @@ class _GSTFormState extends State<app> {
                 ),
               ),*/
               Center(
-                child: Text("GST Rates:", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),),
+                child: Text(
+                  "GST Rates:",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30),
+                ),
               ),
               ratessss(),
               Padding(
@@ -93,7 +102,7 @@ class _GSTFormState extends State<app> {
                   children: <Widget>[
                     Expanded(
                       child: Container(
-                        height: MediaQuery.of(context).size.height/15,
+                        height: MediaQuery.of(context).size.height / 15,
                         child: RaisedButton(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100)),
@@ -116,23 +125,24 @@ class _GSTFormState extends State<app> {
               ),
               Center(
                 child: Container(
-                  width: MediaQuery.of(context).size.width/1.1,
-                  height: MediaQuery.of(context).size.height/3.5,
-                  child: Card(
-                    color: Color(0x90ffffff),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),),
-                    child: Padding(
-                      padding: EdgeInsets.all(_padding),
-                      child: Text(
-                        disp,
-                        style: TextStyle(
-                          fontSize: 26.0,
-                          color: Colors.red,
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    height: MediaQuery.of(context).size.height / 3.5,
+                    child: Card(
+                      color: Color(0x90ffffff),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(_padding),
+                        child: Text(
+                          disp,
+                          style: TextStyle(
+                            fontSize: 26.0,
+                            color: Colors.red,
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                ),
+                    )),
               )
             ],
           ),
@@ -164,18 +174,19 @@ class _GSTFormState extends State<app> {
     return 'Actual Price: $gstPrice1 \n\nGST Amount: $gst1 \n\nTotal Price: $total1';
   }
 
-  Widget ratessss(){
+  Widget ratessss() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             color: Color(0xffffffff),
             child: ToggleButtons(
               borderColor: Colors.black,
               fillColor: Colors.orange,
-              borderWidth:0.5,
+              borderWidth: 0.5,
               color: Colors.black,
               selectedBorderColor: Colors.black,
               selectedColor: Colors.white,
@@ -222,11 +233,19 @@ class _GSTFormState extends State<app> {
                   //isSelected[index] = !isSelected[index];
                 });
                 print(index);
-                switch(index){
-                  case 0: _ra=5; break;
-                  case 1: _ra=8;break;
-                  case 2: _ra=18;break;
-                  case 3: _ra=28;break;
+                switch (index) {
+                  case 0:
+                    _ra = 5;
+                    break;
+                  case 1:
+                    _ra = 8;
+                    break;
+                  case 2:
+                    _ra = 18;
+                    break;
+                  case 3:
+                    _ra = 28;
+                    break;
                 }
                 print(_ra);
               },
@@ -237,5 +256,4 @@ class _GSTFormState extends State<app> {
       ),
     );
   }
-
 }
