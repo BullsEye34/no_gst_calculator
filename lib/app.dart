@@ -86,7 +86,32 @@ class _GSTFormState extends State<app> {
                   )
                 ),
               ),*/
-              Center(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  InkWell(
+                    onTap: _showDataPicker,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 1),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      height: MediaQuery.of(context).size.height / 15,
+                      width: MediaQuery.of(context).size.width / 2,
+                      alignment: Alignment.center,
+                      child: Text(
+                        "GST RATES",
+                        style: TextStyle(
+                            color: Colors.black,
+                            //fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              /* Center(
                 child: Text(
                   "GST Rates:",
                   style: TextStyle(
@@ -95,7 +120,7 @@ class _GSTFormState extends State<app> {
                       fontSize: 30),
                 ),
               ),
-              ratessss(),
+              ratessss(), */
               Padding(
                 padding: EdgeInsets.all(_padding),
                 child: Row(
@@ -122,11 +147,6 @@ class _GSTFormState extends State<app> {
                     ),
                   ],
                 ),
-              ),
-              FlatButton(
-                onPressed: _showDataPicker,
-                child: Text("Test"),
-                color: Colors.red,
               ),
               Center(
                 child: Container(
