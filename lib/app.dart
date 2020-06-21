@@ -52,15 +52,16 @@ class _GSTFormState extends State<app> {
                 padding: EdgeInsets.all(_padding),
                 child: TextField(
                   keyboardType: TextInputType.number,
-                  //style: textStyle,
+                  style: TextStyle(color: Colors.black),
                   controller: priceCon,
                   decoration: InputDecoration(
                       labelText: 'MRP',
+                      prefixIcon: Icon(Icons.panorama_vertical),
                       hintText: 'Enter the Final Price ',
-                      //labelStyle: textStyle,
+                      labelStyle: TextStyle(color: Colors.black),
                       border: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Colors.orange, width: 10.0),
+                            BorderSide(color: Colors.black, width: 10.0),
                         borderRadius: BorderRadius.circular(15.0),
                       )),
                 ),
