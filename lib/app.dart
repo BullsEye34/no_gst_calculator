@@ -12,6 +12,7 @@ class app extends StatefulWidget {
 
 class _GSTFormState extends State<app> {
   //var _rates = ['5', '12', '18', '28'];
+  var newRate;
   final _padding = 20.0;
   var _itemSel;
   var _ra;
@@ -166,8 +167,8 @@ class _GSTFormState extends State<app> {
     double gstPrice = (price * (100 / (100 + rates)));
     double gst = (gstPrice * (rates / 100));*/
 
-    double gstPrice1 = (price * (100 / (100 + _ra)));
-    double gst1 = (gstPrice1 * (_ra / 100));
+    double gstPrice1 = (price * (100 / (100 + newRate)));
+    double gst1 = (gstPrice1 * (newRate / 100));
     double total1 = gst1 + gstPrice1;
     print(gstPrice1);
     print(gst1);
@@ -270,10 +271,16 @@ class _GSTFormState extends State<app> {
       datas: ['5%', '8%', '18%', '28%'],
       title: 'GST Rate',
       onChanged: (data) {
+        setState(() {
+          newRate = (data.toString().substring(0, data.toString().length - 1));
+        });
         print(
             'onChanged date: ${data.toString().substring(0, data.toString().length - 1)}');
       },
       onConfirm: (data) {
+        setState(() {
+          newRate = (data.toString().substring(0, data.toString().length - 1));
+        });
         print(
             'onConfirm date: ${data.toString().substring(0, data.toString().length - 1)}');
       },
