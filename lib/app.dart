@@ -122,6 +122,16 @@ class _GSTFormState extends State<app> {
               ),
               ratessss(), */
               Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Center(
+                  child: Text(
+                    (newRate == null)
+                        ? 'Not Selected'
+                        : newRate.toString() + '%',
+                  ),
+                ),
+              ),
+              Padding(
                 padding: EdgeInsets.all(_padding),
                 child: Row(
                   children: <Widget>[
