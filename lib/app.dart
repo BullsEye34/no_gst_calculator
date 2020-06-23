@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_cupertino_data_picker/flutter_cupertino_data_picker.dart';
 
 class app extends StatefulWidget {
   @override
@@ -10,12 +12,13 @@ class app extends StatefulWidget {
 
 class _GSTFormState extends State<app> {
   //var _rates = ['5', '12', '18', '28'];
+  var newRate;
   final _padding = 20.0;
   var _itemSel;
   var _ra;
   TextEditingController priceCon = TextEditingController();
   var disp = '';
-  List<bool> isSelected = List.generate(4, (_)=>false);
+  List<bool> isSelected = List.generate(4, (_) => false);
 
   @override
   void initState() {
@@ -27,41 +30,41 @@ class _GSTFormState extends State<app> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    TextStyle textStyle = Theme.of(context).textTheme.title;
+    //TextStyle textStyle = Theme.of(context).textTheme.title;
     return Scaffold(
+        backgroundColor: Colors.white,
         //resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           title: Text("No GST Calculator"),
           centerTitle: true,
           backgroundColor: Colors.black,
+          elevation: 0,
         ),
         body: Container(
           decoration: BoxDecoration(
-            image: DecorationImage(
+              /* image: DecorationImage(
               image: AssetImage("Images/eventse.png"),
               fit: BoxFit.cover,
-            ),
-          ),
+            ), */
+              ),
           child: ListView(
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.all(_padding),
-                child: Card(
-                  color: Color(0x90026873),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    style: textStyle,
-                    controller: priceCon,
-                    decoration: InputDecoration(
-                        labelText: 'MRP',
-                        hintText: 'Enter the Final Price ',
-                        labelStyle: textStyle,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.orange,width: 10.0),
-                          borderRadius: BorderRadius.circular(16.0),
-                        )),
-                  ),
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  style: TextStyle(color: Colors.black),
+                  controller: priceCon,
+                  decoration: InputDecoration(
+                      labelText: 'MRP',
+                      prefixIcon: Icon(Icons.panorama_vertical),
+                      hintText: 'Enter the Final Price ',
+                      labelStyle: TextStyle(color: Colors.black),
+                      border: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.black, width: 10.0),
+                        borderRadius: BorderRadius.circular(15.0),
+                      )),
                 ),
               ),
               /*Center(
@@ -83,27 +86,69 @@ class _GSTFormState extends State<app> {
                   )
                 ),
               ),*/
-              Center(
-                child: Text("GST Rates:", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  InkWell(
+                    onTap: _showDataPicker,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 1),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      height: MediaQuery.of(context).size.height / 15,
+                      width: MediaQuery.of(context).size.width / 2,
+                      alignment: Alignment.center,
+                      child: Text(
+                        "GST RATES",
+                        style: TextStyle(
+                            color: Colors.black,
+                            //fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              ratessss(),
+              /* Center(
+                child: Text(
+                  "GST Rates:",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30),
+                ),
+              ),
+              ratessss(), */
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Center(
+                  child: Text(
+                    (newRate == null)
+                        ? 'Not Selected'
+                        : newRate.toString() + '%',
+                    style: TextStyle(fontSize: 40),
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.all(_padding),
                 child: Row(
                   children: <Widget>[
                     Expanded(
                       child: Container(
-                        height: MediaQuery.of(context).size.height/15,
-                        child: RaisedButton(
+                        height: MediaQuery.of(context).size.height / 15,
+                        child: FlatButton(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100)),
+                              borderRadius: BorderRadius.circular(15)),
                           onPressed: () {
                             setState(() {
                               this.disp = _calc();
                             });
                           },
-                          color: Colors.orange,
-                          textColor: Theme.of(context).primaryColorDark,
+                          color: Colors.blue,
+                          textColor: Colors.white,
                           child: Text(
                             'Calculate',
                             textScaleFactor: 1.5,
@@ -114,25 +159,34 @@ class _GSTFormState extends State<app> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 50,
+              ),
               Center(
                 child: Container(
-                  width: MediaQuery.of(context).size.width/1.1,
-                  height: MediaQuery.of(context).size.height/3.5,
-                  child: Card(
-                    color: Color(0x90ffffff),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),),
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    height: MediaQuery.of(context).size.height / 3.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.withOpacity(.2),
+                            offset: Offset(0, 0),
+                            blurRadius: 50,
+                            spreadRadius: 1)
+                      ],
+                    ),
                     child: Padding(
                       padding: EdgeInsets.all(_padding),
                       child: Text(
                         disp,
                         style: TextStyle(
                           fontSize: 26.0,
-                          color: Colors.red,
+                          color: Colors.black,
                         ),
                       ),
-                    ),
-                  )
-                ),
+                    )),
               )
             ],
           ),
@@ -152,8 +206,8 @@ class _GSTFormState extends State<app> {
     double gstPrice = (price * (100 / (100 + rates)));
     double gst = (gstPrice * (rates / 100));*/
 
-    double gstPrice1 = (price * (100 / (100 + _ra)));
-    double gst1 = (gstPrice1 * (_ra / 100));
+    double gstPrice1 = (price * (100 / (100 + newRate)));
+    double gst1 = (gstPrice1 * (newRate / 100));
     double total1 = gst1 + gstPrice1;
     print(gstPrice1);
     print(gst1);
@@ -164,18 +218,19 @@ class _GSTFormState extends State<app> {
     return 'Actual Price: $gstPrice1 \n\nGST Amount: $gst1 \n\nTotal Price: $total1';
   }
 
-  Widget ratessss(){
+  Widget ratessss() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             color: Color(0xffffffff),
             child: ToggleButtons(
               borderColor: Colors.black,
               fillColor: Colors.orange,
-              borderWidth:0.5,
+              borderWidth: 0.5,
               color: Colors.black,
               selectedBorderColor: Colors.black,
               selectedColor: Colors.white,
@@ -222,11 +277,19 @@ class _GSTFormState extends State<app> {
                   //isSelected[index] = !isSelected[index];
                 });
                 print(index);
-                switch(index){
-                  case 0: _ra=5; break;
-                  case 1: _ra=8;break;
-                  case 2: _ra=18;break;
-                  case 3: _ra=28;break;
+                switch (index) {
+                  case 0:
+                    _ra = 5;
+                    break;
+                  case 1:
+                    _ra = 8;
+                    break;
+                  case 2:
+                    _ra = 18;
+                    break;
+                  case 3:
+                    _ra = 28;
+                    break;
                 }
                 print(_ra);
               },
@@ -238,4 +301,30 @@ class _GSTFormState extends State<app> {
     );
   }
 
+  void _showDataPicker() {
+    final bool showTitleActions = true;
+    DataPicker.showDatePicker(
+      context,
+      showTitleActions: showTitleActions,
+      locale: 'en',
+      datas: ['5%', '8%', '18%', '28%'],
+      title: 'GST Rate',
+      onChanged: (data) {
+        setState(() {
+          newRate = int.parse(
+              (data.toString().substring(0, data.toString().length - 1)));
+        });
+        print(
+            'onChanged date: ${data.toString().substring(0, data.toString().length - 1)}');
+      },
+      onConfirm: (data) {
+        setState(() {
+          newRate = int.parse(
+              (data.toString().substring(0, data.toString().length - 1)));
+        });
+        print(
+            'onConfirm date: ${data.toString().substring(0, data.toString().length - 1)}');
+      },
+    );
+  }
 }
