@@ -162,8 +162,8 @@ class _GSTFormState extends State<app> {
                         BoxShadow(
                             color: Colors.grey.withOpacity(.2),
                             offset: Offset(0, 0),
-                            blurRadius: 10,
-                            spreadRadius: 3)
+                            blurRadius: 50,
+                            spreadRadius: 1)
                       ],
                     ),
                     child: Padding(
