@@ -152,19 +152,24 @@ class _GSTFormState extends State<app> {
                 child: Container(
                     width: MediaQuery.of(context).size.width / 1.1,
                     height: MediaQuery.of(context).size.height / 3.5,
-                    child: Card(
-                      color: Color(0x90ffffff),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(_padding),
-                        child: Text(
-                          disp,
-                          style: TextStyle(
-                            fontSize: 26.0,
-                            color: Colors.red,
-                          ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.withOpacity(.2),
+                            offset: Offset(0, 0),
+                            blurRadius: 10,
+                            spreadRadius: 3)
+                      ],
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(_padding),
+                      child: Text(
+                        disp,
+                        style: TextStyle(
+                          fontSize: 26.0,
+                          color: Colors.red,
                         ),
                       ),
                     )),
