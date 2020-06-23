@@ -148,6 +148,9 @@ class _GSTFormState extends State<app> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 100,
+              ),
               Center(
                 child: Container(
                     width: MediaQuery.of(context).size.width / 1.1,
