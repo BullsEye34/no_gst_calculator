@@ -172,7 +172,7 @@ class _GSTFormState extends State<app> {
                         disp,
                         style: TextStyle(
                           fontSize: 26.0,
-                          color: Colors.red,
+                          color: Colors.black,
                         ),
                       ),
                     )),
