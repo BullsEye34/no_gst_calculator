@@ -128,6 +128,7 @@ class _GSTFormState extends State<app> {
                     (newRate == null)
                         ? 'Not Selected'
                         : newRate.toString() + '%',
+                    style: TextStyle(fontSize: 40),
                   ),
                 ),
               ),
@@ -159,7 +160,7 @@ class _GSTFormState extends State<app> {
                 ),
               ),
               SizedBox(
-                height: 100,
+                height: 50,
               ),
               Center(
                 child: Container(
